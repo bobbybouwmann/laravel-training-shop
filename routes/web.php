@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::get('/github/{username}', function ($username, \App\Services\GithubScore $githubScore) {
+    return $githubScore->forUsername($username);
+});
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', 'DashboardController@index')->name('dashboard');
