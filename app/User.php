@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Company;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -39,6 +40,16 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Get the company of the user
+     *
+     * @return HasOne
+     */
+    public function company(): HasOne
+    {
+        return $this->hasOne(Company::class);
+    }
 
     /**
      * Get all the orders of this user.
