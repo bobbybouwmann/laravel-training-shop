@@ -1,0 +1,31 @@
+# Laravel
+.env
+.env.example
+.eslint
+_ide_helper.php
+package.json
+phpunit.xml
+readme.md
+tests/
+
+# Frontend
+public
+!public/index.php
+!public/robots.txt
+node_modules/
+webpack.mix.js
+yarn.lock
+
+# Tools
+.dockerignore
+.dockerignore.*
+.git
+.gitattributes
+.gitignore
+.gitlab-ci.yml
+.gitlab/
+dev/
+!dev/docker/configs
+docker-compose.yml
+Dockerfile
+Makefile

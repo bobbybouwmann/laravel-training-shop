@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 8080:80
+    volumes:
+      - .:/www
+    links:
+      - mariadb
+      - mailhog
+    depends_on:
+      - mariadb
+    environment:
+      PHP_IDE_CONFIG: serverName=local.laravel-training
+      XDEBUG_CONFIG: idekey=PHPSTORM
+
+  mariadb:
+    image: mariadb:10.1
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: testtest123
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - 8025:8025
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 192.168.84.0/24
+        gateway: 192.168.84.1
