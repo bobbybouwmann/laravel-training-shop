@@ -9,5 +9,8 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'sku' => $faker->unique()->colorName,
         'stock' => $faker->numberBetween(5, 99),
         'active' => true,
+        'tax_id' => function () {
+            return factory(App\Tax::class)->create()->id;
+        },
     ];
 });
