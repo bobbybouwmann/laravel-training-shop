@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::get('github/facade/{username}', function ($username) {
+    return \App\Facades\GithubScore::forUsername($username);
+});
+
 Route::get('/github/{username}', function ($username) {
     $githubScore = app(\App\Services\GithubScore::class);
 
