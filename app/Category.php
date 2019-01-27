@@ -34,4 +34,14 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    /**
+     * Get the image of the category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
