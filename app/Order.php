@@ -31,6 +31,27 @@ class Order extends Model
         'status',
     ];
 
+    public function getStatusLabelAttribute(): string
+    {
+        switch ($this->attributes['status']) {
+            case 0:
+                return 'Created';
+                break;
+            case 1:
+                return 'Processing';
+                break;
+            case 2:
+                return 'Completed';
+                break;
+            case 3:
+                return 'Cancelled';
+                break;
+            case 4:
+                return 'Refunded';
+                break;
+        }
+    }
+
     /**
      * Get the user that created this order.
      *

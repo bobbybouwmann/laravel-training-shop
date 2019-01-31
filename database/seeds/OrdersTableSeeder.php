@@ -14,14 +14,7 @@ class OrdersTableSeeder extends Seeder
      */
     public function run()
     {
-        $range = collect(range(1001, 1020));
-
-        $range->each(function ($invoiceNumber) {
-            /** @var Order $order */
-            $order = factory(Order::class)->create([
-                'invoice_number' => $invoiceNumber,
-            ]);
-
+        factory(Order::class, 20)->create()->each(function (Order $order) {
             /** @var User $user */
             $user = User::inRandomOrder()->first();
             $user->orders()->save($order);

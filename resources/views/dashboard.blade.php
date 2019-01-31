@@ -30,7 +30,7 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                     <tr>
-                                        <td>{{ $order->invoice_number }}</td>
+                                        <td>{{ $order->id }}</td>
                                         <td>{{ $order->products->count() }}</td>
                                         <td>{{ $order->products->sum('pivot.quantity') }}</td>
                                         <td>{{ $order->products->sum('pivot.price') }}</td>

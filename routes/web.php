@@ -27,4 +27,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
+    Route::get('orders', 'OrdersController@index')->name('orders.index');
+    Route::get('orders/create', 'OrdersController@create')->name('orders.create');
+    Route::post('orders', 'OrdersController@store')->name('orders.store');
+    Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+
+    Route::get('orders/{order}/products', 'OrderProductsController@create')->name('orders.products.create');
+    Route::post('orders/{order}/products', 'OrderProductsController@store')->name('orders.products.store');
+
+    Route::post('orders/{order}/finalize', 'OrderFinalizerController@store')->name('orders.finalize.store');
+
 });
