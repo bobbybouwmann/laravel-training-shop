@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Bobbybouwmann\Jokes\JokesServiceProvider::class,
 
         /*
          * Application Service Providers...
