@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderProductRequest;
 use App\Order;
 use App\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class OrderProductsController extends Controller
@@ -23,7 +23,7 @@ class OrderProductsController extends Controller
         return view('orders.products.create', compact('order', 'products', 'totalPrice'));
     }
 
-    public function store(Order $order, Request $request): RedirectResponse
+    public function store(Order $order, OrderProductRequest $request): RedirectResponse
     {
         $product = Product::findOrFail($request->get('product_id'));
 

@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
                         </li>
+                        <li>
+                            <a class="nav-link btn btn-primary" href="{{ route('orders.create') }}">{{ __('Create order') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -15,7 +15,8 @@
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->user->name }}</td>
-                                    <td>{{ $order->status }}</td>
+                                    <td>{{ $order->statusLabel }}</td>
+
                                     <td align="right">
                                         @if ($order->status === 0)
                                             <a href="{{ route('orders.products.create', $order) }}" class="btn btn-primary">Fill order</a>

@@ -27,7 +27,6 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'invoice_number',
         'status',
     ];
 
