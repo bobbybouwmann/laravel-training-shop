@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use App\Category;
 use App\Image;
 use App\Product;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,6 +13,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ProductsTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected $user;
+
+    public function setUp()
+    {
+    	parent::setUp();
+
+    	$this->user = factory(User::class)->create();
+    	$this->actingAs($this->user, 'api');
+    }
 
     public function testFetchingProducts()
     {
