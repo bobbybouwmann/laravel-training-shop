@@ -32,14 +32,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
-                        </li>
-                        <li>
-                            <a class="nav-link btn btn-primary" href="{{ route('orders.create') }}">{{ __('Create order') }}</a>
-                        </li>
-                    </ul>
+                    @auth
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
+                            </li>
+                            <li>
+                                <a class="nav-link btn btn-outline-secondary" href="{{ route('orders.create') }}">{{ __('Create order') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('categories.index') }}">{{ __('Categories') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-outline-secondary" href="{{ route('categories.create') }}">{{ __('Create category') }}</a>
+                            </li>
+                        </ul>
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
