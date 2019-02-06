@@ -16,11 +16,15 @@ class CategoriesController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Category::class);
+
         return view('categories.create');
     }
 
     public function store(CategoryRequest $request)
     {
+        $this->authorize('create', Category::class);
+
         $category = Category::create($request->all());
 
         return redirect()->route('categories.show', $category);
@@ -28,16 +32,22 @@ class CategoriesController extends Controller
 
     public function show(Category $category)
     {
+        $this->authorize('view', $category);
+
         return view('categories.show', compact('category'));
     }
     
     public function edit(Category $category)
     {
+        $this->authorize('update', $category);
+
         return view('categories.edit', compact('category'));
     }
 
     public function update(CategoryRequest $request, Category $category)
     {
+        $this->authorize('update', $category);
+
         $category->update($request->all());
         
         return redirect()->route('categories.show', $category);
@@ -45,6 +55,8 @@ class CategoriesController extends Controller
 
     public function destroy(Category $category)
     {
+        $this->authorize('update', $category);
+
         $category->delete();
 
         session()->flash('message', 'Category successfully deleted');

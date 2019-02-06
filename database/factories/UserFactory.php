@@ -27,5 +27,10 @@ $factory->define(App\User::class, function (Faker $faker) {
         'shipping_address_id' => function () {
             return factory(\App\Address::class)->create()->id;
         },
+        'admin' => false,
     ];
 });
+
+$factory->state(App\User::class, 'admin', [
+    'admin' => true,
+]);

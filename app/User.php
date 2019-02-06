@@ -30,6 +30,7 @@ class User extends Authenticatable
         'email',
         'password',
         'api_token',
+        'admin',
     ];
 
     /**
@@ -80,5 +81,10 @@ class User extends Authenticatable
     public function shippingAddress(): BelongsTo
     {
         return $this->belongsTo(Address::class, 'shipping_address_id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin;
     }
 }
