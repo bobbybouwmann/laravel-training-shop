@@ -23,6 +23,12 @@ class CategoriesController extends Controller
     {
         $category = Category::create($request->all());
 
+        if ($request->has('path')) {
+            $category->image()->create([
+                'path' => $request->get('path')
+            ]);
+        }
+
         return redirect()->route('categories.show', $category);
     }
 
@@ -30,7 +36,7 @@ class CategoriesController extends Controller
     {
         return view('categories.show', compact('category'));
     }
-    
+
     public function edit(Category $category)
     {
         return view('categories.edit', compact('category'));
@@ -39,7 +45,16 @@ class CategoriesController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
-        
+
+        if ($request->has('path')) {
+            $category->image()->updateOrCreate([
+                'imageable_id' => $category->id,
+                'imageable_type' => Category::class,
+            ], [
+                'path' => $request->get('path')
+            ]);
+        }
+
         return redirect()->route('categories.show', $category);
     }
 

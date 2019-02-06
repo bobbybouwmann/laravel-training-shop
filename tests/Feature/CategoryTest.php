@@ -65,6 +65,23 @@ class CategoryTest extends TestCase
         ]);
     }
 
+    public function testCreatingNewCategoryWithImage()
+    {
+        $response = $this->post('/categories', [
+            'name' => 'New Category',
+            'description' => 'New Description',
+            'path' => 'https://google.com',
+        ]);
+
+        $response->assertRedirect('/categories/1');
+
+        $this->assertDatabaseHas('images', [
+            'imageable_type' => Category::class,
+            'imageable_id' => 1,
+            'path' => 'https://google.com',
+        ]);
+    }
+
     public function testCreatingNewWithValidationErrors()
     {
         $response = $this->post('/categories', [
@@ -95,6 +112,44 @@ class CategoryTest extends TestCase
             'id' => $category->id,
             'name' => 'Updated name',
             'description' => 'Updated description',
+        ]);
+    }
+
+    public function testUpdatingExisitingCategoryImageWithImage()
+    {
+        $category = factory(Category::class)->create();
+        $image = factory(Image::class)->create([
+            'imageable_id' => $category->id,
+            'imageable_type' => Category::class,
+        ]);
+
+        $response = $this->patch('/categories/' . $category->id, [
+            'name' => 'Updated name',
+            'description' => 'Updated description',
+            'path' => 'https://google.com',
+        ]);
+
+        $this->assertDatabaseHas('images', [
+            'imageable_id' => $category->id,
+            'imageable_type' => Category::class,
+            'path' => 'https://google.com',
+        ]);
+    }
+
+    public function testUpdatingExisitingCategoryImageWithoutExisitingImage()
+    {
+        $category = factory(Category::class)->create();
+
+        $response = $this->patch('/categories/' . $category->id, [
+            'name' => 'Updated name',
+            'description' => 'Updated description',
+            'path' => 'https://google.com',
+        ]);
+
+        $this->assertDatabaseHas('images', [
+            'imageable_id' => $category->id,
+            'imageable_type' => Category::class,
+            'path' => 'https://google.com',
         ]);
     }
 

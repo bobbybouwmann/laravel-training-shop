@@ -14,7 +14,9 @@
 
                             <div class="form-group">
                                 <label for="name">Category name</label>
-                                <input type="name" class="form-control {{ ($errors->has('name')) ? 'is-invalid' : '' }}" id="name" name="name" placeholder="My Category" value="{{ old('name') }}">
+                                <input type="name" class="form-control {{ ($errors->has('name')) ? 'is-invalid' : '' }}"
+                                       id="name" name="name" placeholder="My Category" value="{{ old('name') }}"
+                                >
                                 @if ($errors->has('name'))
                                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                                 @endif
@@ -22,9 +24,22 @@
 
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control {{ ($errors->has('description')) ? 'is-invalid' : '' }}" id="description" name="description" rows="3">{{ old('description') }}</textarea>
+                                <textarea class="form-control {{ ($errors->has('description')) ? 'is-invalid' : '' }}"
+                                          id="description" name="description"
+                                          rows="3">{{ old('description') }}
+                                </textarea>
                                 @if ($errors->has('description'))
                                     <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="path">Image path</label>
+                                <input type="text" class="form-control {{ ($errors->has('path')) ? 'is-invalid' : '' }}"
+                                       id="path" name="path" value="{{ old('path') }}"
+                                >
+                                @if ($errors->has('path'))
+                                    <div class="invalid-feedback">{{ $errors->first('path') }}</div>
                                 @endif
                             </div>
 
