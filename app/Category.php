@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Facades\Cache;
 
 class Category extends Model
 {
@@ -15,6 +16,8 @@ class Category extends Model
      */
     protected $table = 'categories';
 
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +27,17 @@ class Category extends Model
         'name',
         'description',
     ];
+
+    public static function boot(): void
+    {
+        parent::boot();
+
+        self::updated(function (Category $category) {
+            Cache::forget('categories');
+
+            Cache::forget('categories.' . $category->id);
+        });
+    }
 
     /**
      * Get all the products that have this category.

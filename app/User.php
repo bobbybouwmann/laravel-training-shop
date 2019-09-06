@@ -83,7 +83,7 @@ class User extends Authenticatable
         return $this->belongsTo(Address::class, 'shipping_address_id');
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return $this->admin;
     }

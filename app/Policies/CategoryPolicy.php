@@ -17,17 +17,19 @@ class CategoryPolicy
      */
     public function before(User $user, $ability)
     {
-        return $user->isAdmin();
+        if ($user->isAdmin()) {
+            return true;
+        }
     }
 
     /**
      * Determine whether the user can view the category.
      *
-     * @param  \App\User $user
-     * @param  \App\Category $category
-     * @return mixed
+     * @param \App\User $user
+     * @param \App\Category $category
+     * @return bool
      */
-    public function view(User $user, Category $category)
+    public function view(User $user, Category $category): bool
     {
         return false;
     }
@@ -35,10 +37,10 @@ class CategoryPolicy
     /**
      * Determine whether the user can create categories.
      *
-     * @param  \App\User $user
-     * @return mixed
+     * @param \App\User $user
+     * @return bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return false;
     }
@@ -46,11 +48,11 @@ class CategoryPolicy
     /**
      * Determine whether the user can update the category.
      *
-     * @param  \App\User $user
-     * @param  \App\Category $category
-     * @return mixed
+     * @param \App\User $user
+     * @param \App\Category $category
+     * @return bool
      */
-    public function update(User $user, Category $category)
+    public function update(User $user, Category $category): bool
     {
         return false;
     }
@@ -58,11 +60,11 @@ class CategoryPolicy
     /**
      * Determine whether the user can delete the category.
      *
-     * @param  \App\User $user
-     * @param  \App\Category $category
-     * @return mixed
+     * @param \App\User $user
+     * @param \App\Category $category
+     * @return bool
      */
-    public function delete(User $user, Category $category)
+    public function delete(User $user, Category $category): bool
     {
         return false;
     }
